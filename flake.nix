@@ -27,10 +27,18 @@
           overlays = [ (import "${htnl}/overlay.nix") ];
         };
         site = import ./site.nix { inherit pkgs; };
+        updateDocs = pkgs.writeShellApplication {
+          name = "update-docs";
+          runtimeInputs = [ pkgs.coreutils ];
+          text = ''
+            install -Dm644 ${site}/index.html docs/index.html
+          '';
+        };
       in
       {
         packages.default = site;
         packages.site = site;
+        apps.update-docs = flake-utils.lib.mkApp { drv = updateDocs; };
       }
     );
 }

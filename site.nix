@@ -34,8 +34,9 @@ let
     *, *::before, *::after { box-sizing: border-box; }
     html {
       -webkit-text-size-adjust: 100%;
-      color-scheme: dark;
-      background: #070a08;
+      color-scheme: light;
+      background: #ffffff;
+      color: #000000;
     }
     html, body { margin: 0; padding: 0; }
     body {
@@ -47,21 +48,18 @@ let
       margin: clamp(2rem, 6vw, 4rem) auto;
       padding: 0 clamp(1rem, 4vw, 1.25rem) clamp(2rem, 6vw, 4rem);
       padding-bottom: max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
-      background:
-        radial-gradient(circle at 50% 0%, rgba(75, 255, 150, 0.08), transparent 32rem),
-        #070a08;
-      color: #d7fbe8;
+      color: #000000;
     }
     h1 {
       font-size: clamp(1.35rem, 4vw, 1.6rem);
       font-weight: 600;
       margin: 0 0 clamp(2rem, 5vw, 3rem);
-      color: #f4fff8;
+      color: #000000;
       letter-spacing: -0.02em;
     }
     h1::before {
-      content: "$ ";
-      color: #68e09b;
+      content: "> ";
+      color: #004d4d;
       font-weight: 400;
     }
     h2 {
@@ -70,35 +68,32 @@ let
       margin: clamp(1.75rem, 5vw, 2.5rem) 0 0.75rem;
       text-transform: lowercase;
       letter-spacing: 0.06em;
-      color: #68e09b;
+      color: #004d4d;
     }
     h2::before {
       content: "# ";
-      color: #3b8f61;
+      color: #004d4d;
       font-weight: 400;
     }
     p { margin: 0 0 0.75rem; }
     a {
-      color: #a7ffc7;
+      color: #004d4d;
       text-decoration: underline;
       text-underline-offset: 0.2em;
       text-decoration-thickness: 1px;
     }
     @media (hover: hover) {
-      a:hover {
-        color: #f4fff8;
-        background: rgba(104, 224, 155, 0.12);
-      }
+      a:hover { color: #000000; }
     }
     ul { list-style: none; margin: 0; padding: 0; }
     li { margin: 0 0 0.6rem; }
     code {
       font-family: inherit;
       font-size: 0.95em;
-      color: #f4fff8;
+      color: #000000;
     }
     .project-title { font-weight: 700; }
-    .project-note { font-style: italic; color: #8fab9a; }
+    .project-note { font-style: italic; color: #004d4d; }
     section { margin: 0 0 clamp(1.75rem, 4vw, 2.25rem); }
     .cow {
       margin: clamp(2rem, 6vw, 3.5rem) 0;
@@ -111,16 +106,15 @@ let
       line-height: 1.2;
       margin: 0;
       white-space: pre;
-      color: #d7fbe8;
-      text-shadow: 0 0 1rem rgba(104, 224, 155, 0.16);
+      color: #000000;
     }
     address { font-style: normal; }
     footer {
       margin-top: clamp(2.5rem, 6vw, 4rem);
       padding-top: 1.5rem;
-      border-top: 1px solid #1b3426;
+      border-top: 1px solid #004d4d;
       font-size: 0.85rem;
-      color: #7d998a;
+      color: #000000;
     }
   '';
 
