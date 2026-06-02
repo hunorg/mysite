@@ -35,23 +35,35 @@ let
     *, *::before, *::after { box-sizing: border-box; }
     html {
       -webkit-text-size-adjust: 100%;
-      color-scheme: light;
+      color-scheme: dark;
+      background: #070a08;
     }
-    html, body { margin: 0; padding: 0; background: #fff; color: #000; }
+    html, body { margin: 0; padding: 0; }
     body {
-      font-family: ui-serif, Georgia, "Times New Roman", serif;
-      font-size: 1.0625rem;
-      line-height: 1.6;
-      max-width: 36rem;
+      min-height: 100vh;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 1rem;
+      line-height: 1.65;
+      max-width: 42rem;
       margin: clamp(2rem, 6vw, 4rem) auto;
       padding: 0 clamp(1rem, 4vw, 1.25rem) clamp(2rem, 6vw, 4rem);
       padding-bottom: max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 50% 0%, rgba(75, 255, 150, 0.08), transparent 32rem),
+        #070a08;
+      color: #d7fbe8;
     }
     h1 {
-      font-size: 1.5rem;
+      font-size: clamp(1.35rem, 4vw, 1.6rem);
       font-weight: 600;
       margin: 0 0 clamp(2rem, 5vw, 3rem);
-      letter-spacing: -0.01em;
+      color: #f4fff8;
+      letter-spacing: -0.02em;
+    }
+    h1::before {
+      content: "$ ";
+      color: #68e09b;
+      font-weight: 400;
     }
     h2 {
       font-size: 0.9rem;
@@ -59,74 +71,64 @@ let
       margin: clamp(1.75rem, 5vw, 2.5rem) 0 0.75rem;
       text-transform: lowercase;
       letter-spacing: 0.06em;
-      color: #444;
+      color: #68e09b;
+    }
+    h2::before {
+      content: "# ";
+      color: #3b8f61;
+      font-weight: 400;
     }
     p { margin: 0 0 0.75rem; }
     a {
-      color: inherit;
+      color: #a7ffc7;
       text-decoration: underline;
-      text-underline-offset: 0.18em;
+      text-underline-offset: 0.2em;
       text-decoration-thickness: 1px;
     }
-    @media (hover: hover) { a:hover { text-decoration-thickness: 2px; } }
-    ul { list-style: none; margin: 0; padding: 0; }
-    li { margin: 0 0 0.5rem; }
-    code {
-      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      font-size: 0.92em;
+    @media (hover: hover) {
+      a:hover {
+        color: #f4fff8;
+        background: rgba(104, 224, 155, 0.12);
+      }
     }
-    .project-title { font-weight: 600; }
-    .project-note { font-style: italic; color: #666; }
-    section { margin: 0 0 clamp(1.5rem, 4vw, 2rem); }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin: 0 0 0.6rem; }
+    code {
+      font-family: inherit;
+      font-size: 0.95em;
+      color: #f4fff8;
+    }
+    .project-title { font-weight: 700; }
+    .project-note { font-style: italic; color: #8fab9a; }
+    section { margin: 0 0 clamp(1.75rem, 4vw, 2.25rem); }
     .cow {
-      position: relative;
-      margin: clamp(2.5rem, 7vw, 4rem) 0;
+      margin: clamp(2rem, 6vw, 3.5rem) 0;
       text-align: center;
     }
     .cow pre {
       display: inline-block;
       text-align: left;
-      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      font-size: clamp(0.625rem, 2.6vw, 0.8125rem);
+      font-size: clamp(0.625rem, 2.55vw, 0.8125rem);
       line-height: 1.2;
       margin: 0;
       white-space: pre;
+      color: #d7fbe8;
+      text-shadow: 0 0 1rem rgba(104, 224, 155, 0.16);
     }
     .cow figcaption {
       margin-top: 0.75rem;
       font-size: 0.78rem;
-      color: #888;
+      color: #6f8b7d;
       font-style: italic;
       letter-spacing: 0.04em;
-    }
-    .cow::after {
-      content: "moo";
-      position: absolute;
-      top: -1.2rem;
-      right: clamp(0.5rem, 8%, 2rem);
-      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      font-size: 0.875rem;
-      color: #555;
-      opacity: 0;
-      pointer-events: none;
-      animation: moo 7s ease-in-out infinite;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cow::after { animation: none; opacity: 0.55; transform: none; }
-    }
-    @keyframes moo {
-      0%, 60%, 100% { opacity: 0; transform: translateY(0); }
-      70%           { opacity: 0.9; transform: translateY(-0.15rem); }
-      85%           { opacity: 0.5; transform: translateY(-0.6rem); }
-      96%           { opacity: 0;   transform: translateY(-1rem); }
     }
     address { font-style: normal; }
     footer {
       margin-top: clamp(2.5rem, 6vw, 4rem);
       padding-top: 1.5rem;
-      border-top: 1px solid #eee;
+      border-top: 1px solid #1b3426;
       font-size: 0.85rem;
-      color: #666;
+      color: #7d998a;
     }
   '';
 
@@ -147,6 +149,11 @@ let
     (body [
       (h1 "Hunor Geréd")
 
+      (figure { class = "cow"; } [
+        (pre (lib.readFile cow))
+        (figcaption "cowsay")
+      ])
+
       (section [
         (h2 "Projects")
         (ul [
@@ -166,11 +173,6 @@ let
             " file and it renders in the terminal — no app, no account, no cloud."
           ])
         ])
-      ])
-
-      (figure { class = "cow"; } [
-        (pre (lib.readFile cow))
-        (figcaption "cowsay")
       ])
 
       (section [
