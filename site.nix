@@ -1,7 +1,7 @@
 { pkgs }:
 let
   inherit (pkgs) lib htnl;
-  inherit (htnl) document raw;
+  inherit (htnl) bundle document raw;
   inherit (htnl.polymorphic.partials)
     html
     head
@@ -16,7 +16,6 @@ let
     pre
     code
     span
-    nav
     ul
     li
     address
@@ -26,9 +25,9 @@ let
 
   about = "I am a software developer with a focus on functional programming, particularly in Elm, Haskell, and Nix/NixOS.";
 
-  cow = pkgs.runCommand "cow.txt" {
+  cow = lib.readFile (pkgs.runCommand "cow.txt" {
     nativeBuildInputs = [ pkgs.cowsay ];
-  } "cowsay -W 40 ${lib.escapeShellArg about} > $out";
+  } "cowsay -W 40 ${lib.escapeShellArg about} > $out");
 
   css = ''
     *, *::before, *::after { box-sizing: border-box; }
@@ -38,44 +37,29 @@ let
       background: #001414;
       color: #ffffff;
     }
-    html, body { margin: 0; padding: 0; }
     body {
       min-height: 100vh;
       font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      font-size: 1rem;
       line-height: 1.65;
       max-width: 42rem;
       margin: clamp(2rem, 6vw, 4rem) auto;
-      padding: 0 clamp(1rem, 4vw, 1.25rem) clamp(2rem, 6vw, 4rem);
-      padding-bottom: max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
-      color: #ffffff;
+      padding: 0 clamp(1rem, 4vw, 1.25rem) max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
     }
     h1 {
       font-size: clamp(1.35rem, 4vw, 1.6rem);
       font-weight: 600;
       margin: 0 0 clamp(2rem, 5vw, 3rem);
-      color: #ffffff;
       letter-spacing: -0.02em;
     }
-    h1::before {
-      content: "> ";
-      color: #ffffff;
-      font-weight: 400;
-    }
+    h1::before { content: "> "; font-weight: 400; }
     h2 {
       font-size: 0.9rem;
       font-weight: 600;
       margin: clamp(1.75rem, 5vw, 2.5rem) 0 0.75rem;
       text-transform: lowercase;
       letter-spacing: 0.06em;
-      color: #ffffff;
     }
-    h2::before {
-      content: "# ";
-      color: #ffffff;
-      font-weight: 400;
-    }
-    p { margin: 0 0 0.75rem; }
+    h2::before { content: "# "; font-weight: 400; }
     a {
       color: #ffffff;
       text-decoration: underline;
@@ -84,60 +68,42 @@ let
     }
     ul { list-style: none; margin: 0; padding: 0; }
     li { margin: 0 0 0.6rem; }
-    code {
-      font-family: inherit;
-      font-size: 0.95em;
-      color: inherit;
-    }
+    code { font-family: inherit; font-size: 0.95em; }
     @media (hover: hover) {
       a:hover { color: #000000; background: #ffffff; }
     }
     .project-title { font-weight: 700; }
-    .project-note { font-style: italic; color: #ffffff; }
+    .project-note { font-style: italic; }
     section { margin: 0 0 clamp(1.75rem, 4vw, 2.25rem); }
-    .cow {
-      margin: clamp(2rem, 6vw, 3.5rem) 0;
-      text-align: center;
-    }
+    .cow { margin: clamp(2rem, 6vw, 3.5rem) 0; text-align: center; }
     .cow pre {
       display: inline-block;
       text-align: left;
       font-size: clamp(0.625rem, 2.55vw, 0.8125rem);
       line-height: 1.2;
       margin: 0;
-      white-space: pre;
-      color: #ffffff;
     }
     address { font-style: normal; }
     footer {
       margin-top: clamp(2.5rem, 6vw, 4rem);
       padding-top: 1.5rem;
-      border-top: 1px solid #000000;
+      border-top: 1px solid rgb(255 255 255 / 0.4);
       font-size: 0.85rem;
-      color: #ffffff;
     }
   '';
 
-  page = html { lang = "en"; } [
+  page = document (html { lang = "en"; } [
     (head [
       (meta { charset = "UTF-8"; })
-      (meta {
-        name = "viewport";
-        content = "width=device-width, initial-scale=1";
-      })
-      (meta {
-        name = "description";
-        content = about;
-      })
+      (meta { name = "viewport"; content = "width=device-width, initial-scale=1"; })
+      (meta { name = "description"; content = about; })
       (title "Hunor Geréd")
       (style (raw css))
     ])
     (body [
       (h1 "Hunor Geréd")
 
-      (figure { class = "cow"; } [
-        (pre (lib.readFile cow))
-      ])
+      (figure { class = "cow"; } (pre cow))
 
       (section [
         (h2 "Projects")
@@ -158,11 +124,11 @@ let
 
       (section [
         (h2 "Links")
-        (nav (ul [
+        (ul [
           (li (a { href = "https://www.linkedin.com/in/hunorgered/"; } "LinkedIn"))
           (li (a { href = "https://github.com/hunorg"; } "GitHub"))
           (li (a { href = "https://gitlab.com/hunorg"; } "GitLab"))
-        ]))
+        ])
       ])
 
       (section [
@@ -187,9 +153,9 @@ let
         "."
       ])
     ])
-  ];
+  ]);
 in
-pkgs.htnl.bundle {
+bundle {
   name = "hunor-site";
-  htmlDocuments."index.html" = document page;
+  htmlDocuments."index.html" = page;
 }

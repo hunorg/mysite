@@ -13,12 +13,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      htnl,
-      flake-utils,
-    }:
+    { nixpkgs, htnl, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -36,9 +31,14 @@
         };
       in
       {
-        packages.default = site;
-        packages.site = site;
-        apps.update-docs = flake-utils.lib.mkApp { drv = updateDocs; };
+        packages = {
+          default = site;
+          inherit site;
+        };
+        apps.update-docs = {
+          type = "app";
+          program = "${updateDocs}/bin/update-docs";
+        };
       }
     );
 }

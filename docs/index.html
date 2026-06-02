@@ -5,44 +5,29 @@ html {
   background: #001414;
   color: #ffffff;
 }
-html, body { margin: 0; padding: 0; }
 body {
   min-height: 100vh;
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  font-size: 1rem;
   line-height: 1.65;
   max-width: 42rem;
   margin: clamp(2rem, 6vw, 4rem) auto;
-  padding: 0 clamp(1rem, 4vw, 1.25rem) clamp(2rem, 6vw, 4rem);
-  padding-bottom: max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
-  color: #ffffff;
+  padding: 0 clamp(1rem, 4vw, 1.25rem) max(clamp(2rem, 6vw, 4rem), env(safe-area-inset-bottom));
 }
 h1 {
   font-size: clamp(1.35rem, 4vw, 1.6rem);
   font-weight: 600;
   margin: 0 0 clamp(2rem, 5vw, 3rem);
-  color: #ffffff;
   letter-spacing: -0.02em;
 }
-h1::before {
-  content: "> ";
-  color: #ffffff;
-  font-weight: 400;
-}
+h1::before { content: "> "; font-weight: 400; }
 h2 {
   font-size: 0.9rem;
   font-weight: 600;
   margin: clamp(1.75rem, 5vw, 2.5rem) 0 0.75rem;
   text-transform: lowercase;
   letter-spacing: 0.06em;
-  color: #ffffff;
 }
-h2::before {
-  content: "# ";
-  color: #ffffff;
-  font-weight: 400;
-}
-p { margin: 0 0 0.75rem; }
+h2::before { content: "# "; font-weight: 400; }
 a {
   color: #ffffff;
   text-decoration: underline;
@@ -51,37 +36,27 @@ a {
 }
 ul { list-style: none; margin: 0; padding: 0; }
 li { margin: 0 0 0.6rem; }
-code {
-  font-family: inherit;
-  font-size: 0.95em;
-  color: inherit;
-}
+code { font-family: inherit; font-size: 0.95em; }
 @media (hover: hover) {
   a:hover { color: #000000; background: #ffffff; }
 }
 .project-title { font-weight: 700; }
-.project-note { font-style: italic; color: #ffffff; }
+.project-note { font-style: italic; }
 section { margin: 0 0 clamp(1.75rem, 4vw, 2.25rem); }
-.cow {
-  margin: clamp(2rem, 6vw, 3.5rem) 0;
-  text-align: center;
-}
+.cow { margin: clamp(2rem, 6vw, 3.5rem) 0; text-align: center; }
 .cow pre {
   display: inline-block;
   text-align: left;
   font-size: clamp(0.625rem, 2.55vw, 0.8125rem);
   line-height: 1.2;
   margin: 0;
-  white-space: pre;
-  color: #ffffff;
 }
 address { font-style: normal; }
 footer {
   margin-top: clamp(2.5rem, 6vw, 4rem);
   padding-top: 1.5rem;
-  border-top: 1px solid #000000;
+  border-top: 1px solid rgb(255 255 255 / 0.4);
   font-size: 0.85rem;
-  color: #ffffff;
 }
 </style></head><body><h1>Hunor Geréd</h1><figure class="cow"><pre> _________________________________________
 / I am a software developer with a focus  \
@@ -93,4 +68,4 @@ footer {
             (__)\       )\/\
                 ||----w |
                 ||     ||
-</pre></figure><section><h2>Projects</h2><ul><li><a href="https://pointy.cloud/"><span class="project-title">Pointy Notebook</span></a><span class="project-note"> — collaborator since the start.</span> Keeps research computation tidy: reusable analyses as project pages with forms, live runs, browsable outputs, and commit-pinned share links.</li><li><a href="https://terminal-top.eket.org/"><span class="project-title">terminal-top</span></a> — A Nix-driven terminal dashboard for live, structured data. Define a source URL and a panel layout in a <code>.nix</code> file and it renders in the terminal — no app, no account, no cloud.</li></ul></section><section><h2>Links</h2><nav><ul><li><a href="https://www.linkedin.com/in/hunorgered/">LinkedIn</a></li><li><a href="https://github.com/hunorg">GitHub</a></li><li><a href="https://gitlab.com/hunorg">GitLab</a></li></ul></nav></section><section><h2>Contact</h2><address><ul><li>Matrix — <a href="https://matrix.to/#/@hunig:matrix.org"><code>@hunig:matrix.org</code></a></li><li>Email — <a href="mailto:hunorgered@gmail.com">hunorgered@gmail.com</a></li></ul></address></section><footer>Built with <a href="https://htnl.molybdenum.software/">htnl</a>, a Nix library for making websites. <a href="https://github.com/hunorg/mysite">Source</a>.</footer></body></html>
+</pre></figure><section><h2>Projects</h2><ul><li><a href="https://pointy.cloud/"><span class="project-title">Pointy Notebook</span></a><span class="project-note"> — collaborator since the start.</span> Keeps research computation tidy: reusable analyses as project pages with forms, live runs, browsable outputs, and commit-pinned share links.</li><li><a href="https://terminal-top.eket.org/"><span class="project-title">terminal-top</span></a> — A Nix-driven terminal dashboard for live, structured data. Define a source URL and a panel layout in a <code>.nix</code> file and it renders in the terminal — no app, no account, no cloud.</li></ul></section><section><h2>Links</h2><ul><li><a href="https://www.linkedin.com/in/hunorgered/">LinkedIn</a></li><li><a href="https://github.com/hunorg">GitHub</a></li><li><a href="https://gitlab.com/hunorg">GitLab</a></li></ul></section><section><h2>Contact</h2><address><ul><li>Matrix — <a href="https://matrix.to/#/@hunig:matrix.org"><code>@hunig:matrix.org</code></a></li><li>Email — <a href="mailto:hunorgered@gmail.com">hunorgered@gmail.com</a></li></ul></address></section><footer>Built with <a href="https://htnl.molybdenum.software/">htnl</a>, a Nix library for making websites. <a href="https://github.com/hunorg/mysite">Source</a>.</footer></body></html>
