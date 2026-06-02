@@ -182,7 +182,9 @@ let
       (footer [
         "Built with "
         (a { href = "https://htnl.molybdenum.software/"; } "htnl")
-        ", a Nix library for making websites."
+        ", a Nix library for making websites. "
+        (a { href = "https://github.com/hunorg/mysite"; } "Source")
+        "."
       ])
     ])
   ];
