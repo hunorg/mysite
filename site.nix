@@ -123,16 +123,16 @@ let
               " Keeps research computation tidy: reusable analyses as project pages with forms, live runs, browsable outputs, and commit-pinned share links."
             ])
             (li [
-              (a { href = "https://terminal-top.eket.org/"; } (span { class = "project-title"; } "terminal-top"))
-              " — A Nix-driven terminal dashboard for live, structured data. Define a source URL and a panel layout in a "
-              (code ".nix")
-              " file and it renders in the terminal — no app, no account, no cloud."
-            ])
-            (li [
               (a { href = "https://package.elm-lang.org/packages/421anon/elm-flow/latest/"; } (span { class = "project-title"; } "elm-flow"))
               " — collaborative Elm package for writing effectful logic as composable steps: state, commands, async channels, and optics without a conventional "
               (code "update")
               " dispatcher. Built from concepts and code from elm-io and elm-procedure, with thanks to their authors."
+            ])
+            (li [
+              (a { href = "https://terminal-top.eket.org/"; } (span { class = "project-title"; } "terminal-top"))
+              " — A Nix-driven terminal dashboard for live, structured data. Define a source URL and a panel layout in a "
+              (code ".nix")
+              " file and it renders in the terminal — no app, no account, no cloud."
             ])
           ])
         ])
