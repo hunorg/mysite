@@ -20,35 +20,26 @@
 
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      perSystem =
+      siteFor =
         system:
         let
           pkgs = import nixpkgs {
             inherit system;
             overlays = [ (import "${htnl}/overlay.nix") ];
           };
-          site = pkgs.callPackage ./site.nix { };
-          updateDocs = pkgs.writeShellApplication {
-            name = "update-docs";
-            runtimeInputs = [ pkgs.coreutils ];
-            text = ''
-              install -Dm644 ${site}/index.html docs/index.html                                                                                                                           
-            '';
-          };
         in
-        {
-          packages = {
-            default = site;
-            inherit site;
-          };
-          apps.update-docs = {
-            type = "app";
-            program = "${updateDocs}/bin/update-docs";
-          };
-        };
+        pkgs.callPackage ./site.nix { };
     in
     {
-      packages = forAllSystems (system: (perSystem system).packages);
-      apps = forAllSystems (system: (perSystem system).apps);
+      packages = forAllSystems (
+        system:
+        let
+          site = siteFor system;
+        in
+        {
+          default = site;
+          inherit site;
+        }
+      );
     };
 }
