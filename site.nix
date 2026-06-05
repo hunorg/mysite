@@ -128,6 +128,12 @@ let
               (code ".nix")
               " file and it renders in the terminal — no app, no account, no cloud."
             ])
+            (li [
+              (a { href = "https://package.elm-lang.org/packages/421anon/elm-flow/latest/"; } (span { class = "project-title"; } "elm-flow"))
+              " — collaborative Elm package for writing effectful logic as composable steps: state, commands, async channels, and optics without a conventional "
+              (code "update")
+              " dispatcher. Built from concepts and code from elm-io and elm-procedure, with thanks to their authors."
+            ])
           ])
         ])
 
