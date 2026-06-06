@@ -117,7 +117,9 @@ let
           (h2 "Projects")
           (ul [
             (li [
-              (a { href = "https://package.elm-lang.org/packages/421anon/elm-flow/latest/"; } (span { class = "project-title"; } "elm-flow"))
+              (a { href = "https://package.elm-lang.org/packages/421anon/elm-flow/latest/"; } (
+                span { class = "project-title"; } "elm-flow"
+              ))
               " — collaborative Elm package for writing effectful logic as composable steps: state, commands, async channels, and optics without a conventional "
               (code "update")
               " dispatcher. Built from concepts and code from elm-io and elm-procedure, with thanks to their authors."
@@ -172,17 +174,19 @@ let
 
   bundled = bundle { htmlDocuments."index.html" = page; };
 in
-runCommand "hunor-site" {
-  nativeBuildInputs = [
-    cowsay
-    validator-nu
-  ];
-} ''
-  mkdir -p "$out"
-  cp -r ${bundled}/. "$out/"
-  chmod -R u+w "$out"
-  cow=$(cowsay -W 40 ${lib.escapeShellArg about} \
-    | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g')
-  substituteInPlace "$out/index.html" --replace-fail '@COW@' "$cow"
-  vnu --Werror "$out/index.html"
-''
+runCommand "hunor-site"
+  {
+    nativeBuildInputs = [
+      cowsay
+      validator-nu
+    ];
+  }
+  ''
+    mkdir -p "$out"
+    cp -r ${bundled}/. "$out/"
+    chmod -R u+w "$out"
+    cow=$(cowsay -W 40 ${lib.escapeShellArg about} \
+      | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g')
+    substituteInPlace "$out/index.html" --replace-fail '@COW@' "$cow"
+    vnu --Werror "$out/index.html"
+  ''
