@@ -155,6 +155,8 @@ html { lang = "en"; } [
       }))
       ", a Nix library for making websites. "
       (a { href = "https://github.com/hunorg/hunorg.com"; } "Source")
+      " · "
+      (a { href = "https://github.com/hunorg/hunorg.com/blob/main/LICENSE"; } "MIT")
       "."
     ])
   ])
