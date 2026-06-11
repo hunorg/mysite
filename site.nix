@@ -199,7 +199,11 @@ runCommand "hunor-site"
     cp -r ${bundled}/. "$out/"
     chmod -R u+w "$out"
     cow=$(cowsay -W 40 ${lib.escapeShellArg about} \
-      | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g')
+      | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' \
+      | sed \
+        -e 's|Elm|<a href="https://elm-lang.org/">Elm</a>|' \
+        -e 's|Haskell|<a href="https://www.haskell.org/">Haskell</a>|' \
+        -e 's|Nix/NixOS|<a href="https://nixos.org/">Nix/NixOS</a>|')
     substituteInPlace "$out/index.html" --replace-fail '@COW@' "$cow"
     vnu --Werror "$out/index.html"
   ''
