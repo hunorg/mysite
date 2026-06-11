@@ -26,6 +26,7 @@ let
     address
     footer
     a
+    img
     ;
 
   about = "I am a software developer with a focus on functional programming, particularly in Elm, Haskell, and Nix/NixOS.";
@@ -72,9 +73,12 @@ let
     code { font-family: inherit; font-size: 0.95em; }
     @media (hover: hover) {
       a:hover { color: #000000; background: #ffffff; }
+      a:has(.icon):hover { background: none; color: inherit; }
+      a:has(.icon):hover span { background: #ffffff; color: #000000; }
     }
     .project-title { font-weight: 700; }
     .project-note { font-style: italic; }
+    .icon { height: 1em; width: 1em; vertical-align: -0.125em; margin-right: 0.4em; }
     section { margin: 0 0 clamp(1.75rem, 4vw, 2.25rem); }
     .cow { margin: clamp(2rem, 6vw, 3.5rem) 0; text-align: center; }
     .cow pre {
@@ -141,23 +145,29 @@ let
         (section [
           (h2 "Links")
           (ul [
-            (li (a { href = "https://www.linkedin.com/in/hunorgered/"; } "LinkedIn"))
-            (li (a { href = "https://github.com/hunorg"; } "GitHub"))
-            (li (a { href = "https://gitlab.com/hunorg"; } "GitLab"))
+            (li (a { href = "https://www.linkedin.com/in/hunorgered/"; } [
+              (img { src = ./icons/linkedin.svg; alt = ""; class = "icon"; }) (span "LinkedIn")
+            ]))
+            (li (a { href = "https://github.com/hunorg"; } [
+              (img { src = ./icons/github.svg; alt = ""; class = "icon"; }) (span "GitHub")
+            ]))
+            (li (a { href = "https://gitlab.com/hunorg"; } [
+              (img { src = ./icons/gitlab.svg; alt = ""; class = "icon"; }) (span "GitLab")
+            ]))
           ])
         ])
 
         (section [
           (h2 "Contact")
           (address (ul [
-            (li [
-              "Matrix — "
-              (a { href = "https://matrix.to/#/@hunig:matrix.org"; } (code "@hunig:matrix.org"))
-            ])
-            (li [
-              "Email — "
-              (a { href = "mailto:hunorgered@gmail.com"; } "hunorgered@gmail.com")
-            ])
+            (li (a { href = "https://matrix.to/#/@hunig:matrix.org"; } [
+              (img { src = ./icons/matrix.svg; alt = ""; class = "icon"; })
+              (span [ "Matrix — " (code "@hunig:matrix.org") ])
+            ]))
+            (li (a { href = "mailto:hunorgered@gmail.com"; } [
+              (img { src = ./icons/email.svg; alt = ""; class = "icon"; })
+              (span "Email — hunorgered@gmail.com")
+            ]))
           ]))
         ])
 
